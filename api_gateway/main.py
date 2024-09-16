@@ -1,6 +1,8 @@
 import pika 
 import json
 
+import sys 
+import loguru import logger
 
 def consume_payment():
     """Consume payment events from RabbitMQ and perfom fraud detection."""
@@ -28,3 +30,9 @@ def perform_fraud_check(payment_data):
     
     
     print(f"check fraud for payment: {user_id} - {amount}")
+    
+    
+logger.add(sys.stdout,format="{time} {level} {message}", filter="my module", level="INFO", serialize=True)
+
+
+logger.info("service started")

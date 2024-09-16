@@ -2,6 +2,9 @@ import pika
 import json 
 
 
+import sys 
+import loguru import logger
+
 def publish_payment_event(payment_data):
     """Publish a payment event to RabbitMQ when a payment is processed."""
     connection=pika.BlockConnection(pika.ConnectionParameters(host='rabbit'))
@@ -30,3 +33,9 @@ def proccess_payment(user_id, amount):
     }
     
     publish_payment_event(payment_data)
+    
+    
+logger.add(sys.stdout,format="{time} {level} {message}", filter="my module", level="INFO", serialize=True)
+
+
+logger.info("service started")

@@ -38,3 +38,11 @@ def create():
     
     
     return app
+
+@app.route('/v1/login', methods=['POST'])
+def login():
+    pass
+
+@app.route('/v2/login', methods=['POST'])
+def login_v2():
+    pass
